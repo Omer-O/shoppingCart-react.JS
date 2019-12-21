@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    //state is an object that include any DATA that the component needs
     state = {
         count: 0,
-        //to dynamic generate a list (ul) from the array we will use map()
-        tags: ["1", "2", "3"]
+        //use map() for du=ynamic list change, for now hard code tags
+        // tags: ["1", "2", "3"]
     }; 
+//1# way: bind eventHandler to 'this': constructor
+    constructor() {
+        super();
+        this.handleIncrement.bind(this);
+    }
+    //state: object includes DATA for the component
 
-    //can set the styling via a property and pass it to the tag
+    //set the styling via a property and pass it to the tag
     styles = {
         fontSize: 20,
         fontWeight: "bold"
@@ -16,20 +21,31 @@ class Counter extends Component {
     //conditional rendering
     renderTags() {
         if (this.state.tags.length === 0) return <p>Sorry, no Tags!</p>;
-        
-        <ul>{this.state.tags.map(tag => <li key={tag}>{ tag }</li>)}</ul>;
-
-        return  
-
+        return <ul>{this.state.tags.map(tag => <li key={tag}>{ tag }</li>)}</ul>;
     }
+// #2way: bind eventHandler to 'this': with Arrow function
+    handleIncrement = e => {
+        console.log(e);
+        //increment in 1 and change state.count on every button click:
+        this.setState({ count: this.state.count + 1 });   
+    };
     render() { 
 
         return ( 
-            //beter to wrap with React.Fragment than <div> - save css and unecessery divs
-            <React.Fragment> 
-                <span style={this.styles} className={this.getBadgeClasses()}>{this.formatCount()}</span>
-                <button className="btn btn-secondary btn-sm">Increment</button>
-            </React.Fragment>
+            //React.Fragment rather than <div> - save css + unecessery divs
+            <div> 
+                <span 
+                    style={this.styles} 
+                    className={this.getBadgeClasses()}>{this.formatCount()}
+                </span>
+                <button 
+                    onClick={(e) => this.handleIncrement(e)} 
+                    className="btn btn-secondary btn-sm">add</button>
+                {/* <div>
+                    {this.state.tags.length === 0 && "Please create a new tag!"}
+                    {this.renderTags()}
+                </div> */}
+            </div>
          );
     }
     getBadgeClasses() {
