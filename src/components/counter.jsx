@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
+// import Counters from './counters';
 
 class Counter extends Component {
     state = {
-        count: 0,
-        //use map() for du=ynamic list change, for now hard code tags
-        // tags: ["1", "2", "3"]
+        value: this.props.value
+
     }; 
 //1# way: bind eventHandler to 'this': constructor
-    constructor() {
-        super();
-        this.handleIncrement.bind(this);
-    }
+    // constructor() {
+    //     super();
+    //     this.handleIncrement.bind(this);
+    // }
     //state: object includes DATA for the component
-
     //set the styling via a property and pass it to the tag
     styles = {
         fontSize: 20,
@@ -27,13 +26,16 @@ class Counter extends Component {
     handleIncrement = e => {
         console.log(e);
         //increment in 1 and change state.count on every button click:
-        this.setState({ count: this.state.count + 1 });   
+        this.setState({ value: this.state.value + 1 });   
     };
     render() { 
+        console.log('props', this.props);
+        
 
         return ( 
             //React.Fragment rather than <div> - save css + unecessery divs
-            <div> 
+            <React.Fragment> 
+                {this.props.children}
                 <span 
                     style={this.styles} 
                     className={this.getBadgeClasses()}>{this.formatCount()}
@@ -45,18 +47,18 @@ class Counter extends Component {
                     {this.state.tags.length === 0 && "Please create a new tag!"}
                     {this.renderTags()}
                 </div> */}
-            </div>
+            </React.Fragment>
          );
     }
     getBadgeClasses() {
         let classes = "badge m-2 badge-";
-        classes += (this.state.count === 0) ? "warning" : "primary";
+        classes += (this.state.value === 0) ? "warning" : "primary";
         return classes;
     }
 
     formatCount() {
-        const { count } = this.state;
-        return count === 0 ? 'Zero' : count;
+        const { value } = this.state;
+        return value === 0 ? 'Zero' : value;
     }
 }
  
