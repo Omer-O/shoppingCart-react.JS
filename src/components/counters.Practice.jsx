@@ -12,22 +12,32 @@ class Counters extends Component {
         ]
      };//state end
 
+//update the state by cloning counters array and return an updated array
     handleIncrement = counter => {
-        const counters = [...this.state.counters];
-        const i = counters.indexOf(counter);
-        counters[i] = {...counter}
-        counters[i].value++;
-        this.setState({ counters });
-        console.log(this.state.counters); 
+    //spred operator (...) to clone counters Array and set it to new Arry of counters.
+            const counters = [...this.state.counters];
+    //find the index of the counter we recieve as a parameter
+            const i = counters.indexOf(counter);
+    //avoiding modifing the state directly
+            counters[i] = {...counter}
+    //Increment 
+            counters[i].value++;
+    //update the state
+            this.setState({ counters });
+            console.log(this.state.counters); 
     }//handleIncrement end
 
+//update the state using filter() to get the state except the deleted counter.
      handleDelete = (counterId) => {
          console.log(counterId);
+         //filter the deleted counter
          const counters = this.state.counters.filter(c => c.id !== counterId);
+         //updateing the state
          this.setState({ counters });
      }//handleDelete end
 
      handleReset= () => {
+    //use map() to get new Array with reset counters.value
         const counters = this.state.counters.map(c => {
             c.value = 0;
             return c;
@@ -48,11 +58,12 @@ class Counters extends Component {
                     onDelete={this.handleDelete} 
                     onIncrement={this.handleIncrement}
                     counter={counter} >
+                     {/* <h4>Counter #{counter.id}</h4> */}
                  </Counter>
                  ))}
             </div>
          );
-    }//render end
-}//Counters end
+    }
+}
  
 export default Counters;
