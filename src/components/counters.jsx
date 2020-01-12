@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Counter from './counter';
 
 class Counters extends Component {
-    render() { 
+    render() {
+//clean code using Destructuring Arguments
         const { onReset, counters, onDelete, onIncrement } = this.props;
-
         return ( 
             <React.Fragment>
                 <div>

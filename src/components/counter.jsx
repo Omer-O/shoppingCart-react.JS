@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 // import Counters from './counters';
 
 class Counter extends Component {
-    styles = {
-        fontSize: 20,
-        fontWeight: "bold"
-    }//styles end
+    // styles = {
+    //     fontSize: 20,
+    //     fontWeight: "bold"
+    // }//styles end
 
 //conditional rendering
     renderTags() {
@@ -14,19 +14,22 @@ class Counter extends Component {
     }//renderTags end
 
     render() { 
+        const { onIncrement, onDelete, counter } = this.props;
         console.log('props', this.props);
         return ( 
             <React.Fragment> 
-                <span 
-                    style={this.styles} 
-                    className={this.getBadgeClasses()}>{this.formatCount()}
-                </span>
-                <button 
-                    onClick={() => this.props.onIncrement(this.props.counter)}
-                    className="btn btn-secondary btn-sm">add</button>
-                <button 
-                    onClick={() => this.props.onDelete(this.props.counter.id)} 
-                    className="btn btn-danger btn-sm m-2">Delete</button>
+                <div>
+                    <span 
+                        //style={this.styles} 
+                        className={this.getBadgeClasses()}>{this.formatCount()}
+                    </span>
+                    <button 
+                        onClick={() => onIncrement(counter)}
+                        className="btn btn-secondary btn-sm">add</button>
+                    <button 
+                        onClick={() => onDelete(counter.id)} 
+                        className="btn btn-danger btn-sm m-2">Delete</button>
+                </div>
             </React.Fragment>
          );
     }//render end

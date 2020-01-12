@@ -44,7 +44,10 @@ class Counters extends Component {
         this.setState({ counters });
     };//handleReset end
     render() { 
-        return ( 
+//can use clean code using Destructuring Arguments
+//const { onReset, counters, onDelete, onIncrement } = this.props;
+//than erase all this.props.
+return ( 
             <div>
                 <button 
                     className="btn btn-primary btn-sm m-2"

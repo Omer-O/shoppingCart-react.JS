@@ -20,11 +20,11 @@ handleIncrement = counter => {
     counters[i] = {...counter}
     counters[i].value++;
     this.setState({ counters });
-    console.log(this.state.counters); 
+    console.log(`Incremented item number:`, this.state.counters[i].id); 
 }//handleIncrement end
 
  handleDelete = (counterId) => {
-     console.log(counterId);
+     console.log('Delete item number:', counterId);
      const counters = this.state.counters.filter(c => c.id !== counterId);
      this.setState({ counters });
  }//handleDelete end
@@ -35,7 +35,9 @@ handleIncrement = counter => {
         return c;
     });
     this.setState({ counters });
+    console.log('List was Reseted')
 };//handleReset end
+
   render() {
     return (
       <React.Fragment>
@@ -50,7 +52,6 @@ handleIncrement = counter => {
             onDelete={this.handleDelete} />
         </main>
       </React.Fragment>
-  
     );
   }
 }
