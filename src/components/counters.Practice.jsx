@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Counter from './counter';
 
 class Counters extends Component {
-
     state = { 
         counters: [
            { id: 1, value: 4},
@@ -44,7 +43,6 @@ class Counters extends Component {
         });
         this.setState({ counters });
     };//handleReset end
-
     render() { 
         return ( 
             <div>
